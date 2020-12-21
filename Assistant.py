@@ -11,6 +11,7 @@ engine.setProperty('voice',voices[1].id)
 
 
 
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -32,9 +33,12 @@ c=1
 speak("I am Kendra,your assistant. how may I help you? ")
 while c==1:
  p = Listen()
+ if p is not None:
+     p = p.lower()
+
  print(p)
 
- if p==None:
+ if p is None:
     speak("you did not say anything")
 # Folders
  elif p[0:11] == "open folder":
@@ -206,6 +210,17 @@ while c==1:
   c=0
   songs = os.listdir(music_dir)
   os.startfile(os.path.join(music_dir, songs[random.randrange(0,len(songs))]))
+
+  #Facebook
+ elif p == "open facebook":
+   webbrowser.open_new('https://www.facebook.com/')
+
+ elif p == "my facebook profile":
+     webbrowser.open_new('https://www.facebook.com/prantik.chongdar.3')
+
+ elif p[0:15]== "search facebook":
+     webbrowser.open_new('https://www.facebook.com/search/top?q='+p[15:len(p)])
+
 
 
 #webcam
